@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+        React Home -> 문서 -> 웹사이트에 react 추가하기 -> 2단계_스크립트 태그 추가하기
+        외부 파일을 불러오는 script의 경우 head 안에 작성해준다.-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!--babel-->
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!--
+        03. JSX는 편리한 문법이나 몇가지 규칙을 준수해야 한다.
+        동일 레벨의 노드들이 연달아 정의되는 경우 문법적인 에러가 발생하게 된다.
+
+        여러 형제 레벨의 엘리먼트를 정의해야하는 경우 하나의 부모 엘리먼트로(div 태그와 같은) 감싸야 하는데
+        div 요소 같은 실질적인 요소를 사용하지 않으려면 Fragment를 이용할 수 있따. (react 16이전 버전에 추가됨)
+    -->
+    <script type="text/babel">
+        const user = {
+            name: "gildong",
+            phone: '010-1234-5678'
+        };
+
+        /*
+        03.1. 최상위 엘리먼트가 두 개 이상이면 에러가 발생된다. */
+        // const element = (
+        //     <h1>안녕</h1>
+        //     <h1>하세요</h1>
+        // )
+
+        /*
+        03.2. <div> 태그로 감사서 하나의 돔 트리를 생성할 수 있도록 한다. */
+        // const element = (
+        //     <div>
+        //         <h1>안녕</h1>
+        //         <h1>phone : {user.phone}</h1>
+        //     </div>
+        // )
+
+        /*
+        03.3. <React.Fragment>로 감싸서 형식상의 돔 트리상 상위 엘리먼트를 만들어준다.
+        의미없는 태그가 너무 길어진다는 단점...*/
+        // const elemet = (
+        //     <React.Fragment>
+        //         <h1>안녕{user.name}</h1>
+        //         <h1>phone : {user.phone}</h1>
+        //     </React.Fragment>
+        // );
+
+        /*
+        03.4. React 라이브러리로부터 Fragment 객체만 구조분해 할당을 해주면 React.을 생략할 수 있다.
+        플래그먼트의 축약표현*/
+        // const {Fragment} = React;
+        // const {name, phone} = user;
+        // const elemet = (
+        //     <Fragment>
+        //         <h1>안녕 {name + "님"}</h1>
+        //         <h1>phone : {phone + "로 전화해도 됨?"}</h1>
+        //     </Fragment>
+        // );
+
+        const {} = React;
+        const {name, phone} = user;
+        const elemet = (
+            <>
+                <h1>안녕 {name + "님"}</h1>
+                <h1>phone : {phone + "로 전화해도 됨?"}</h1>
+            </>
+        );
+        
+        ReactDOM.createRoot(document.getElementById("root")).render(elemet);
+    </script>
+</body>
+
+</html>
