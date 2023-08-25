@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--React Library(react 실행)
+    외부파일을 불러오는 script의 경우 head 태그 안에 작성해준다.
+    외부파일 참고 경로: React(https://ko.legacy.reactjs.org/) Home → 문서 → 웹사이트에 react추가하기 → 2단계_스크립트 태그 추가하기-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!--babel Library
+    ReactElement를 xml 문법 형식으로 정의할 수 있는 방법, ES6+, E5 next 문법을 ES5문법으로 변환해 주는 도구
+    여러가지 랭귀지들을 하나로 컴파일할 수 있게 해주는 역할-->
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>JSX연습하기</title>
+</head>
+<body>
+    <!--
+        1. 02_expression-in-jsx.html를 참조하여 Hello world를 화면에 만들어 주세요
+        2. 1번 문제에 플래그먼트를 추가해주세요 (fragment)
+        3. 2번 문제에 hello world를 추가한 엘리먼트에 id, class를 hello로 넣어주세요 (attribute)
+        03.1. 해당 엘리먼트를 클릭 하면 안녕이라는 팝업이 나오도록 해주세요 (function - alert("안녕"))
+        03.2. hello world가 화면의 중앙에 오도록 하고 백그라운드 및 글자 색을 변경해주세요 (inline-styling-attribute)
+        4. 3번에 정의한 class를 인라인 속성으로 넣어주세요 
+    -->
+    <div id="root"></div>
+    <script type="text/babel">/*
+    이 안에 들어가는 모든 엘리먼트를 ReactDOM에서 관리하기 때문에 이것을 (root)DOM 혹은 (root)node라고 부른다.*/
+        
+        // 01. expression
+        const helloWorld = <h1>Hello world</h1>
+        // 03. attribute
+        const id = "hello";
+        const className = "hello";
+
+        // 03.2. inline-styling-attribute(CSS 객체로 작성)
+        const style = {
+            textAlign: 'center',
+            backgroundColor : "#DDECCA",
+            color : "#406B25"
+        }
+
+        // 02. fragment
+        const element = (
+            <>
+                <h1 id={id} className={className} style={style} onClick={pop}>{helloWorld}</h1>
+            </>
+        );
+
+        // 03.1. '안녕' 팝업
+        function pop() {
+            alert("안녕");
+        }
+        
+        ReactDOM.createRoot(document.getElementById("root")).render(element);
+    </script>
+</body>
+</html>
