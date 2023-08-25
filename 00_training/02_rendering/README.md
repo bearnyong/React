@@ -1,4 +1,4 @@
-# 실습 문제
+# Rendering 실습 문제
 ## (03_conditional-rendering.html을 참조)
 
 1. 콜라 자판기 
