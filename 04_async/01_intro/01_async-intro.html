@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        01. 선언 단계
+        let sayHello;
+
+        02. 초기화 단계
+        sayHello = function(){
+            console.log("hello world!");
+        }
+
+        03. 스택에 호출됨
+        sayHello();
+        */
+        function sayHello(){
+            console.log("hello world!");
+        }
+        // sayHello();
+        // console.log("통님의 상한 카레~~");
+
+        setTimeout(sayHello, 3000);
+        console.log('end');
+        
+    </script>
+</body>
+</html>

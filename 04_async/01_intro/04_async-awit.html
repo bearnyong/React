@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increase(number) {
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(
+                    ()=> {
+                        const result = number + 10;
+                        if(result>60){
+                            const e = new Error ("number Toobig");
+                            return reject(e);
+                        }
+                        resolve(result);
+                    }, 1000
+                );
+            });
+            return promise;
+        }
+
+        async function run(){ //async: 비동기 함수로 동작시키겠다.
+            try{
+                let result = await increase(0); //await: 얘가 끝날 때까지 다음 동작을 실행시키지 마라...
+                console.log(result); //10
+
+                result = await increase(result);
+                console.log(result); //20
+
+                result = await increase(result);
+                console.log(result); //30
+
+                result = await increase(result);
+                console.log(result); //40
+
+                result = await increase(result);
+                console.log(result); //50
+
+                // result = await increase(result);
+                // console.log(result); //60 -> 60보다 큰 결과이기 떄문에 catch-error로 넘어감..!!
+
+                console.log("연산결과 : " , result);
+            } catch(e) {
+                console.log(e, "발생됨");
+            }
+        }
+        run();
+    </script>
+</body>
+</html>
