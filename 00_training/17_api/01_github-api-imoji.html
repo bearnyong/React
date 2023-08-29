@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const {useState} = React;
+
+        function SearchBox({setImgUrl}){
+            const [imojiName, setImojiName] = useState('');
+            const onChangeHandler = e => {
+                setImojiName(e.target.value);
+            };
+            const onClickHandler = () => {
+                fetch("https://api.github.com/emojis")
+                .then(response => response.json()) //그냥 json으로 파싱해주는 것임...
+                .then(data => setImgUrl(data[imojiName])); //그리고 여기에 넣어주기
+            };
+
+            return(
+                <>
+                    <input type="text" onChange={onChangeHandler}/>
+                    <button onClick={onClickHandler}>검색</button>
+                </>
+            );
+        }
+
+        function ImageBox({imgUrl}){
+            return !!imgUrl? <img src={imgUrl}/> : <h1>허상우 쌤 탈락</h1>
+        }
+
+        function App(){
+            const [imgUrl, setImgUrl] = useState("");
+            return(
+                <>
+                    <SearchBox setImgUrl={setImgUrl}/>
+                    <br/>
+                    <ImageBox imgUrl={imgUrl}/>
+                </>
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+    </script>
+</body>
+</html>
